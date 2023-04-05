@@ -5,26 +5,25 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
  
-// Your token contract
+// Token contract
 contract Token is Ownable, ERC20 {
-    string private constant _symbol = '';                 // TODO: Give your token a symbol (all caps!)
-    string private constant _name = '';                   // TODO: Give your token a name
+    string private constant _symbol = 'RYDT';
+    string private constant _name = 'Ryan DEX Token'; 
 
     constructor() ERC20(_name, _symbol) {}
 
-    // ============================================================
-    //                    FUNCTIONS TO IMPLEMENT
-    // ============================================================
+    bool private mintingAllow = true;
 
     // Function _mint: Create more of your tokens.
     // You can change the inputs, or the scope of your function, as needed.
     // Do not remove the AdminOnly modifier!
+    // @param amount: amount of token in SMALLEST DIVISIBLE unit 
     function mint(uint amount) 
         public 
         onlyOwner
     {
-        /******* TODO: Implement this function *******/
-
+        require(mintingAllow, "Minting new token is disabled.");
+        _mint(msg.sender, amount);
     }
 
     // Function _disable_mint: Disable future minting of your token.
@@ -34,7 +33,6 @@ contract Token is Ownable, ERC20 {
         public
         onlyOwner
     {
-        /******* TODO: Implement this function *******/
-
+        mintingAllow = false;
     }
 }
