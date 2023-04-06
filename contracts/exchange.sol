@@ -174,8 +174,7 @@ contract TokenExchange is Ownable {
         external
         payable
     {
-        uint token_amount = lps[msg.sender] * token_reserves / share_denominator;
-        uint eth_amount = token_amount * eth_reserves / token_reserves;
+        uint eth_amount = lps[msg.sender] * eth_reserves / share_denominator;
 
         removeLiquidity(eth_amount, max_exchange_rate, min_exchange_rate, rate_denominator);
 

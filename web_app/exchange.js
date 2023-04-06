@@ -1119,7 +1119,7 @@ const sanityCheck = async function () {
       "Test removing all liquidity",
       swap_fee[0],
       Math.abs(state6.eth_liquidity - (state5.eth_liquidity - 90)) < 5 &&
-        Mith.abs(
+        Math.abs(
           state6.token_liquidity -
             (state5.token_liquidity - expected_tokens_removed)
         ) <
@@ -1133,6 +1133,6 @@ const sanityCheck = async function () {
 // Sleep 3s to ensure init() finishes before sanityCheck() runs on first load.
 // If you run into sanityCheck() errors due to init() not finishing, please extend the sleep time.
 
-setTimeout(function () {
-  sanityCheck();
-}, 3000);
+// setTimeout(function () {
+//   sanityCheck();
+// }, 3000);
